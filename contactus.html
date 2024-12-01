@@ -32,18 +32,93 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #1a1919;
+}
+.contact-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #faf9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.footer
-{
+h1, h2 {
+    color: #444;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.contact-form {
+    margin-top: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(218, 215, 215);
+    border-radius: 5px;
+}
+
+.sub{
+    display: block;
+    width: 100%;
+    background: hsl(134, 73%, 56%);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    
+}
+
+.sub:hover {
+    background: #218838;
+}
+.footer {
     background-color: burlywood;
-    width: 100% ;
+    width: 100%;
     height: 200px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.about,
+.contactinfo,
+.socialmedia {
+    width: 30%; 
+    max-width: 300px; 
+    text-align: center; 
+}
+
+
+
+.socialmedia a {
+    display: block; 
+    text-decoration: none;
+   
 }
     </style>
 </head>
@@ -55,8 +130,56 @@ li a:hover:not(.active) {
         <li><a href="registration.html">Sign up</a></li>
         <li><a href="contactus.html">Contact us</a></li>
       </ul></div>
-    
+      <div class="contact-container">
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <p><strong>Company Name:</strong> APB INDUSTRIES</p>
+            <p><strong>Address:</strong> Kannur,Kerala, India</p>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+            <p><strong>Email:</strong> apbindustries@gmail.com</p>
+        </div>
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
 
-      <div class="footer"></div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit" class="sub">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+      <div class="about">
+        <h3>About APB Industries</h3>
+        <p>
+            APB Industries is a leader in innovative solutions, delivering exceptional services in manufacturing and technology. 
+            Our mission is to provide sustainable and quality-driven results for our clients.
+        </p>
+    </div>
+    <div class="contactinfo">
+      <h3>Contact Us</h3>
+      <p><strong>Address:</strong> Kannur, Kerala, India</p>
+      <p><strong>Phone:</strong> +91 9876543210</p>
+      <p><strong>Email:</strong> apbindustries@gamil.com</p>
+  </div>
+  <div class="socialmedia">
+      <h3>Follow Us</h3>
+      <a href="https://facebook.com/apbindustries">Facebook</a>
+      <a href="https://twitter.com/apbindustries">Twitter</a>
+      <a href="https://linkedin.com/company/apbindustries">LinkedIn</a>
+      <a href="https://instagram.com/apbindustries">Instagram</a>
+  </div>
+    
+<div style="text-align: center;background-color: burlywood;width: 100%;">
+  <p>&copy; 2024 APB Industries. All Rights Reserved.</p>
+</div>
+    </div>
 </body>
 </html>
