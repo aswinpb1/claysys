@@ -5,31 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>registration</title>
     <style>
-        ul {
-  list-style-type: none;
-}
-.nav
-{
-    background-color: #333;
-    width: 100% ;
-    height: 70px;
-    position: relative;
-    top: 1;
-    left: 0;
-}
+        .header {
+            background-color: #333;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
 
-li {
-  float: left;
-  padding-left: 30px;
-}
+        .header img {
+            width: 50px;
+            height: 50px;
+        }
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
 
 
 
@@ -52,13 +62,12 @@ li a {
    font-size: 20px;
    border-radius: 10px;
 } 
-form input {
-    display: block; 
-    margin-bottom: 15px; 
-    width: 100%; 
-    padding: 10px; 
+form label, form input {
+        display: block;
+        width: 100%;
+        padding: 10px; 
+    }
 
-}
 form
 {
     width: 70%;
@@ -93,25 +102,155 @@ form
     text-decoration: none;
    
 }
+.submit{
+    display: block;
+    width: 100%;
+    background: hsl(134, 70%, 26%);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    
+}
     </style>
+
+<script>
+function calculate_age() {
+    const a = document.getElementById('dob').value; 
+    const currentDate = new Date(); 
+
+    const dob = new Date(a);
+
+    let age = currentDate.getFullYear() - dob.getFullYear();
+
+    const hasBirthdayPassed = currentDate.getMonth() > dob.getMonth() ||
+                              (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() >= dob.getDate());
+    if (!hasBirthdayPassed) {
+        age--;
+    }
+    
+    document.getElementById('age').value=age;
+}
+
+
+
+function changecity()
+{
+  const state=document.getElementById('state').value;
+  const cityDropdown = document.getElementById('city');
+  cityDropdown.innerHTML = '<option value="">--Select a City--</option>';
+  let districts;
+  if(state=="Kerala")
+{
+  districts = [
+  "Thiruvananthapuram",
+  "Kollam",
+  "Pathanamthitta",
+  "Alappuzha",
+  "Kottayam",
+  "Idukki",
+  "Ernakulam",
+  "Thrissur",
+  "Palakkad",
+  "Malappuram",
+  "Kozhikode",
+  "Wayanad",
+  "Kannur",
+  "Kasaragod"
+];
+}
+else if(state=="Karnadaka")
+{
+  districts = ["Bengaluru", "Mysore", "Mangalore", "Hubli", "Belgaum"];
+}
+else if(state=="Tamilnadu")
+{
+  districts = ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"];
+}
+else if(state=="Goa")
+{
+  districts = ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda"];
+}
+districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.textContent = district;
+                cityDropdown.appendChild(option);
+            });
+        
+}
+function passwordvalidation()
+{
+  const password=document.getElementById('password').value;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    
+    if (passwordPattern.test(password)) {
+        console.log("password is valid")
+    } else {
+        alert("Password must have at least one capital letter, one lowercase letter, one number, and one special character.");
+        document.getElementById('password').value="";
+    }
+}
+       
+
+function confirm()
+{
+  const password=document.getElementById('password').value;
+  const confirmpassword=document.getElementById('confirmpassword').value;
+  
+  if(password!=confirmpassword)
+{
+  alert("confirm password must be same as password");
+}
+}
+
+</script>
+
+
 </head>
 <body>
-    <div class="nav"><ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="aboutus.html">About us</a></li>
-        <li><a href="login.html">Sign in</a></li>
-        <li><a href="registration.html">Sign up</a></li>
-        <li><a href="contactus.html">Contact us</a></li>
-      </ul></div>
+    <div class="header">
+        <img src="apb.jpg" alt="Logo">
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="contactus.html">Contact us</a></li>
+        </ul>
+    </div>
 
       <div class="reg">
         <div class="heading"><h1>Registration</h1></div>
       <form action="">
-        First Name  : <input type="text" name="" id="" placeholder="FIRST NAME" required>
-        Second Name : <input type="text" name="" id="" placeholder="LAST NAME" required>
-        DOB         : <input type="date" name="" id=""required>
-        Age         : <input type="number" name="" id="" placeholder="AGE" required>
-
+        <label for="">First name :</label> <input type="text" name="" id="" placeholder="First name" required>
+        <label for="">Last name :</label> <input type="text" name="" id="" placeholder="Last name" required>
+       <label for="">DOB :</label><input type="date" name="" id="dob" required onchange="calculate_age()">
+        <label for="">Age</label> <input type="number" name="" id="age" placeholder="Age" readonly>
+        <label for="">Gender</label> <select name="" id="">
+          <option value="">Male</option>
+          <option value="">Female</option>
+          <option value="">Others</option>
+        </select>
+      <label for="">Phone number :</label> <input type="number" name="" id="">
+        <label for="">Email address :</label> <input type="email" name="" id="">
+       <label for="">Address :</label> <textarea name="" id="" cols="123" rows="10"></textarea>
+        <label for="">State :</label> <select name="" id="state" onchange="changecity()">
+          <option value="">Select a state</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Tamilnadu">Tamilnadu</option>
+          <option value="Karnadaka">Karnadaka</option>
+          <option value="Goa">Goa</option>
+        </select>
+        <label for="">City :</label><select name="" id="city">
+          <option value="">Select a city</option>
+          
+        </select>
+        <label for="">Username :</label> <input type="email" name="" id="" required>
+        <label for="">Password :</label> <input type="password" name="" required id="password" onchange="passwordvalidation()">
+        <label for="">Confirm password :</label> <input type="password" required name="" id="confirmpassword">
+        <button type="submit" onclick="confirm()" class="submit">REGISTER</button>
       </form>
     </div>
 

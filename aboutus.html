@@ -5,32 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About us</title>
     <style>
-       .nav ul {
-  list-style-type: none;
-  
-}
-.nav
-{
-    background-color: #333;
-    width: 100% ;
-    height: 70px;
-    position: relative;
-    top: 1;
-    left: 0;
-}
+       .header {
+            background-color: #333;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
 
-.nav li {
-  float: left;
-  padding-left: 30px;
-}
+        .header img {
+            width: 50px;
+            height: 50px;
+        }
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
 
 .footer {
@@ -67,15 +75,18 @@ li a {
     </style>
 </head>
 <body>
-    <div class="nav"><ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="aboutus.html">About us</a></li>
-        <li><a href="login.html">Sign in</a></li>
-        <li><a href="registration.html">Sign up</a></li>
-        <li><a href="contactus.html">Contact us</a></li>
-      </ul></div>
+    <div class="header">
+        <img src="apb.jpg" alt="Logo">
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="contactus.html">Contact us</a></li>
+        </ul>
+    </div>
     <div class="main">
-        <h1>ABOUT US</h1>
+        <h1>About us</h1>
         <p>Welcome to APB Industries, where innovation meets everyday essentials. Established with a vision to blend cutting-edge technology with the fundamental needs of life, we are proud to be a versatile enterprise dedicated to making a meaningful impact across diverse domains.</p>
         <h2>Our Focus Areas</h2>
         <ol>

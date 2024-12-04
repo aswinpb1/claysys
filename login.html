@@ -5,30 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <style>
-        ul {
-  list-style-type: none;
-}
-.nav
-{
-    background-color: #333;
-    width: 100% ;
-    height: 70px;
-    position: relative;
-    top: 1;
-    left: 0;
-}
-li {
-  float: left;
-  padding-left: 30px;
-}
+     .header {
+            background-color: #333;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+        .header img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
 
 .login
@@ -58,7 +68,7 @@ li a {
    font-size: 20px;
    border-radius: 10px;
 } 
-button {
+.submit {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
@@ -109,25 +119,49 @@ button {
     <script>
         function validation()
         {
-
+            let a;
+            a=document.getElementById('email').value;
+            if(a=="")
+        {
+            alert("please enter the username");
         }
+        else
+        {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(a)) 
+            {
+            alert("Please enter a valid email address");
+        
+        } 
+        }
+
+        let b;
+        b=document.getElementById('password').value;
+        if(b=="")
+        {
+            alert('please enter the password');
+        }
+    }
     </script>
 </head>
 <body>
-    <div class="nav"><ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="aboutus.html">About us</a></li>
-        <li><a href="login.html">Sign in</a></li>
-        <li><a href="registration.html">Sign up</a></li>
-        <li><a href="contactus.html">Contact us</a></li>
-      </ul></div>
+    <div class="header">
+        <img src="apb.jpg" alt="Logo">
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="contactus.html">Contact us</a></li>
+        </ul>
+    </div>
     <div class="login">
         <div class="heading"><h2>Login Form</h2></div>
         <form action="">
-         <div class="text"><input type="text" placeholder="login" style="width: 330px;" name="" id=""></div>
-        <div class="password"><input type="password" style="width: 330px;" placeholder="password" name="" id=""></div>
+         <div class="text"><input type="email" id="email" placeholder="Email address"  style="width: 330px;" name="" id=""></div>
+        <div class="password"><input type="password" id="password" style="width: 330px;" placeholder="Password" name="" id=""></div>
         <div class="forgot"><input type="checkbox" name="" id="">Remember me &nbsp;&nbsp; <a href="#">forgot password?</a></div>
-        <button type="button" style="align-items: center;" onclick="validation()">Login</button>
+        <input class="submit" type="submit" onclick="validation()" value="Login">
         <div class="signup">Not a member? <a href="registration.html">signup now</a> </div>
     </form>
     </div>
