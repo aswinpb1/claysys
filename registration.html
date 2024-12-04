@@ -6,7 +6,7 @@
     <title>registration</title>
     <style>
         .header {
-            background-color: #333;
+            background-color: burlywood;
             width: 100%;
             height: 70px;
             display: flex;
@@ -34,24 +34,68 @@
 
         .navbar li a {
             display: block;
-            color: white;
+            color: rgb(16, 9, 9);
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+        }
+        .navbar li a:hover {
+            
+            color: rgb(16, 9, 9);
+            font-size: large;
         }
 
 
 
 
-.footer
-{
-    background-color: burlywood;
-    width: 100% ;
-    height: 200px;
-    position: relative;
-    bottom: 0;
-    left: 0;
-}
+        .footer {
+            background-color: burlywood;
+            width: 100%;
+            padding: 20px 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            text-align: center;
+        }
+
+        .footer > div {
+            flex: 1 1 300px; 
+            margin: 10px;
+            max-width: 400px;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer p, .footer a {
+            font-size: 1rem;
+            margin: 5px 0;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #007BFF; 
+        }
+
+        .footer div:last-child {
+            flex: 1 1 100%; 
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                text-align: center;
+            }
+
+            .footer > div {
+                flex: 1 1 100%; 
+            }
+        }
 .heading
 {
     
@@ -62,9 +106,13 @@
    font-size: 20px;
    border-radius: 10px;
 } 
-form label, form input {
+form span {
         display: block;
-        width: 100%;
+        
+    }
+    form span textarea,form span input
+    {
+      width: 100%;
         padding: 10px; 
     }
 
@@ -113,6 +161,12 @@ form
     border-radius: 5px;
     
 }
+.reg
+{
+  display: flex;
+  justify-content: center;
+}
+
     </style>
 
 <script>
@@ -123,17 +177,51 @@ function calculate_age() {
     const dob = new Date(a);
 
     let age = currentDate.getFullYear() - dob.getFullYear();
-
+    if(age<0){
+      document.getElementById('dateerror').innerHTML="Invalid age calculated. Please check the date of birth.";
+      return;    }
+      else
+      {
     const hasBirthdayPassed = currentDate.getMonth() > dob.getMonth() ||
                               (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() >= dob.getDate());
     if (!hasBirthdayPassed) {
         age--;
     }
-    
+    document.getElementById('dateerror').innerHTML="";
     document.getElementById('age').value=age;
+  }
 }
 
+function namecheck() {
+  let a = document.getElementById('name').value;
+  let b = /^[A-Za-z\s]+$/; 
 
+  if (!b.test(a)) 
+  { 
+    document.getElementById('name').value = ""; 
+    document.getElementById('nameerror').innerHTML = "Please enter a valid name (letters and spaces only)."; 
+  }
+  else
+  {
+    document.getElementById('nameerror').innerHTML = ""; 
+  }
+}
+function lnamecheck() {
+  let a = document.getElementById('lname').value;
+  let b = /^[A-Za-z\s]+$/; 
+
+  if (!b.test(a)) 
+  { 
+    document.getElementById('lname').value = ""; 
+    document.getElementById('lnameerror').innerHTML = "Please enter a valid name (letters and spaces only)."; 
+
+  }
+  else
+  {
+    document.getElementById('lnameerror').innerHTML = ""; 
+
+  }
+}
 
 function changecity()
 {
@@ -186,10 +274,10 @@ function passwordvalidation()
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     
     if (passwordPattern.test(password)) {
-        console.log("password is valid")
-    } else {
-        alert("Password must have at least one capital letter, one lowercase letter, one number, and one special character.");
-        document.getElementById('password').value="";
+      document.getElementById('passworderror').innerHTML="";
+        } else {
+      document.getElementById('passworderror').innerHTML="Password must have at least one capital letter, one lowercase letter, one number, and one special character.";
+              document.getElementById('password').value="";
     }
 }
        
@@ -201,7 +289,12 @@ function confirm()
   
   if(password!=confirmpassword)
 {
-  alert("confirm password must be same as password");
+  document.getElementById('confirmerror').innerHTML="confirm password must be same as password";
+  
+}
+else
+{
+  document.getElementById('confirmerror').innerHTML="";
 }
 }
 function phone()
@@ -211,9 +304,27 @@ function phone()
   let b=a.length;
   if(b!=10)
 {
-  alert("please enter 10 digits");
-  //document.getElementById('phonenumber').value="";
+  document.getElementById('phnerror').innerHTML="Please enter the 10 digits";
+  document.getElementById('phonenumber').value="";
 }
+else{
+  document.getElementById('phnerror').innerHTML="";
+
+}
+}
+function emailvalidation()
+{
+  let a;
+            a=document.getElementById('email').value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(a)) 
+            {
+                document.getElementById('emailerror').innerHTML="Please enter a valid email address";
+        
+        } else
+        {
+            document.getElementById('emailerror').innerHTML="";
+        }
 }
 </script>
 
@@ -230,37 +341,37 @@ function phone()
             <li><a href="contactus.html">Contact us</a></li>
         </ul>
     </div>
-
+    <div class="heading"><h1>Registration</h1></div>
       <div class="reg">
-        <div class="heading"><h1>Registration</h1></div>
       <form action="">
-        <label for="">First name :</label> <input type="text" name="" id="" placeholder="First name" required>
-        <label for="">Last name :</label> <input type="text" name="" id="" placeholder="Last name" required>
-       <label for="">DOB :</label><input type="date" name="" id="dob" required onchange="calculate_age()">
-        <label for="">Age</label> <input type="number" name="" id="age" placeholder="Age" readonly>
-        <label for="">Gender</label> <select name="" id="">
+        <span><label for="">First name :</label> <input type="text" name="" id="name" onchange="namecheck()" placeholder="First name" required></span><span style="color: red;font-size: smaller;" id="nameerror"></span>
+        <span><label for="">Last name :</label> <input type="text" name="" id="lname" onchange="lnamecheck()" placeholder="Last name" required></span><span style="color: red;font-size: smaller;" id="lnameerror"></span>
+       <span><label for="">DOB :</label><input type="date" name="" id="dob" required onchange="calculate_age()"></span><span style="color: red;font-size: smaller;" id="dateerror"></span>
+       <span><label for="">Age</label> <input type="number" name="" id="age" placeholder="Age" readonly></span>
+        <span></span><label for="">Gender</label> <select name="" id="">
           <option value="">Male</option>
           <option value="">Female</option>
           <option value="">Others</option>
-        </select>
-      <label for="">Phone number :</label> <input type="number" name="" id="phonenumber" onchange="phone()">
-        <label for="">Email address :</label> <input type="email" name="" id="">
-       <label for="">Address :</label> <textarea name="" id="" cols="123" rows="10"></textarea>
-        <label for="">State :</label> <select name="" id="state" onchange="changecity()">
+        </select></span>
+        <span><label for="">Phone number :</label> <input type="number" name="" id="phonenumber" onchange="phone()"></span><span style="color: red;font-size: smaller;" id="phnerror"></span>
+      <span><label for="">Email address :</label> <input type="email" name="" onchange="emailvalidation()" id="email"></span></span><span style="color: red;font-size: smaller;" id="emailerror"></span>
+      <span><label for="">Address :</label> <textarea name="" id="" cols="123" rows="10"></textarea></span>
+       <span><label for="">State :</label> <select name="" id="state" onchange="changecity()">
           <option value="">Select a state</option>
           <option value="Kerala">Kerala</option>
           <option value="Tamilnadu">Tamilnadu</option>
           <option value="Karnadaka">Karnadaka</option>
           <option value="Goa">Goa</option>
-        </select>
-        <label for="">City :</label><select name="" id="city">
+        </select></span>
+        <span><label for="">City :</label><select name="" id="city">
           <option value="">Select a city</option>
           
-        </select>
-        <label for="">Username :</label> <input type="email" name="" id="" required>
-        <label for="">Password :</label> <input type="password" name="" required id="password" onchange="passwordvalidation()">
-        <label for="">Confirm password :</label> <input type="password" required name="" id="confirmpassword">
-        <button type="submit" onclick="confirm()" class="submit">REGISTER</button>
+        </select></span>
+        <span><label for="">Username :</label> <input type="email" name="" id="" required></span>
+        <span><label for="">Password :</label> <input type="password" name="" required id="password" onchange="passwordvalidation()"></span><span style="color: red;font-size: smaller;" id="passworderror"></span>
+        <span><label for="">Confirm password :</label> <input type="password" required name="" id="confirmpassword" onchange="confirm()"></span><span style="color: red;font-size: smaller;" id="confirmerror"></span>
+        <p>&nbsp;</p>
+        <span><button type="submit"  class="submit">REGISTER</button></span>
       </form>
     </div>
 
