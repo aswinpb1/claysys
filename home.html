@@ -86,7 +86,54 @@
         .footer p {
             margin: 0;
         }
+        .button
+        {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .button button
+        {
+            width: 50px;
+            height: 35px;
+            background-color: rgb(8, 171, 8);
+            color: aliceblue;
+            border: none;
+        }
+        .button button:hover
+        {
+            background-color: rgb(5, 101, 5);
+        }
+        .mySlides
+        {
+            display: none;
+        }
     </style>
+
+    <script>
+        var slideIndex = 1;
+        window.onload = function() {
+            var x = document.getElementsByClassName("mySlides");
+            x[0].style.display = "block"; 
+        };
+        showDivs(slideIndex);
+       function slidechange(n) 
+       {
+        showDivs(slideIndex += n);
+        }
+        function showDivs(n) 
+        {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+            }
+            x[slideIndex-1].style.display = "block";
+        }
+    </script>
+
 </head>
 <body>
     <div class="header">
@@ -99,13 +146,39 @@
             <li><a href="contactus.html">Contact us</a></li>
         </ul>
     </div>
-    
-    <div class="main">
-        <img src="1.jpg" alt="Image 1" width="400px">
-        <img src="2.jpg" alt="Image 2" width="400px">
-        <img src="3.jpg" alt="Image 3" width="400px">
+    <div class="slideshow">
+        <div class="main" id="slides">
+            <div class="mySlides">
+                <img src="1.jpg" alt="Image 1" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="2.jpg" alt="Image 2" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="3.jpg" alt="Image 3" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="4.jpg" alt="Image 3" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="5.jpg" alt="Image 3" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="6.jpg" alt="Image 3" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="7.jpg" alt="Image 3" width="400px">
+            </div>
+            <div class="mySlides">
+                <img src="8.jpg" alt="Image 3" width="400px">
+            </div>
+        </div>
     </div>
-
+    <div class="button">
+        <button id="previous" onclick="slidechange(-1)"><</button>
+        <button id="next" onclick="slidechange(1)">></button>
+    </div>
+    
     <div class="footer">
         <div class="about">
             <h3>About APB Industries</h3>
